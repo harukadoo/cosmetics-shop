@@ -1,8 +1,13 @@
 import '../../styles/item/item.scss'
 import perfumeImg from '../../images/perfume.jpg';
 import plus from '../../images/plus.svg';
+import { IPerfume } from '../../types';
 
-export const Item = () => {
+interface ItemProps {
+    perfume: IPerfume;
+}
+
+export const Item: React.FC<ItemProps> = ({ perfume }) => {
     return (
         <div className="item">
             <div className="item__container">
@@ -10,11 +15,11 @@ export const Item = () => {
                     <img src={plus} alt="plus" />
                 </button>
 
-                <div className="item__container__img" style={{ backgroundImage: `url(${perfumeImg})` }}></div>
+                <div className="item__container__img" style={{ backgroundImage: `url(${perfume.image})` }}></div>
 
                 <div className="item__container__info">
-                    <p className="item__container__info__title">title</p>
-                    <p className="item__container__info__price">250 $</p>
+                    <p className="item__container__info__title">{perfume.title}</p>
+                    <p className="item__container__info__price">{perfume.price} {perfume.currency}</p>
                 </div>
             </div>
         </div>

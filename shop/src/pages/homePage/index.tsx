@@ -1,11 +1,16 @@
 import { Item } from '../../components/item';
 import '../../styles/homePage/homepage.scss';
 import plus from '../../images/plus.svg';
-import arrowDown from '../../images/chevron-down.svg';
 import GroupedMenu from '../../components/menu/GroupedMenu';
 import BasicMenu from '../../components/menu/BasicMenu';
+import { IPerfume } from '../../types';
+import perfumesDataRaw from '../../api/perfume.json';
+
+const perfumesData: IPerfume[] = perfumesDataRaw as IPerfume[];
 
 export const HomePage = () => {
+    const featuredPerfume = perfumesData[0];
+
     return (
         <div className="home">
             <div className="home__container">
@@ -44,13 +49,9 @@ export const HomePage = () => {
                         </div>
 
                         <div className="main__container__items">
-                            <Item />
-                            <Item />
-                            <Item />
-                            <Item />
-
-                            <Item />
-                            <Item />
+                            {perfumesData.map((perfume) => (
+                                <Item key={perfume.id} perfume={perfume} />
+                            ))}
                         </div>
 
                         <button className="main__container__more-items">load more</button>

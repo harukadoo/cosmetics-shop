@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "title": "Ice-Cool Vigor",
+    "price": 250,
+    "currency": "$",
+    "image": "/assets/perfumes/perfume.jpg",
+    "volume": "50ml",
+    "gender": "unisex",
+    "description": "A refreshing icy breeze featuring notes of arctic mint, sea salt, and crisp bergamot."
+  },
+  {
+    "id": 2,
+    "title": "Midnight Amber",
+    "price": 180,
+    "currency": "$",
+    "image": "/assets/perfumes/perfume.jpg",
+    "volume": "100ml",
+    "gender": "unisex",
+    "description": "A warm oriental fragrance with deep accords of amber, vanilla, and spicy sandalwood."
+  },
+  {
+    "id": 3,
+    "title": "Velvet Rose",
+    "price": 210,
+    "currency": "$",
+    "image": "/assets/perfumes/perfume.jpg",
+    "volume": "30ml",
+    "gender": "female",
+    "description": "An elegant bouquet of Damask rose, complemented by soft musk and pink pepper."
+  },
+  {
+    "id": 4,
+    "title": "Citrus Splash",
+    "price": 120,
+    "currency": "$",
+    "image": "/assets/perfumes/perfume.jpg",
+    "volume": "50ml",
+    "gender": "unisex",
+    "description": "An energetic mix of Sicilian lemon, sparkling grapefruit, and fresh-cut grass."
+  },
+  {
+    "id": 5,
+    "title": "Dark Oud",
+    "price": 320,
+    "currency": "$",
+    "image": "/assets/perfumes/perfume.jpg",
+    "volume": "50ml",
+    "gender": "male",
+    "description": "A luxurious and mysterious scent of precious oud, smooth leather, and tobacco leaf."
+  },
+  {
+    "id": 6,
+    "title": "Wild Lavender",
+    "price": 95,
+    "currency": "$",
+    "image": "/assets/perfumes/perfume.jpg",
+    "volume": "100ml",
+    "gender": "unisex",
+    "description": "A calming composition of mountain lavender, clary sage, and light woody undertones."
+  },
+  {
+    "id": 7,
+    "title": "Golden Saffron",
+    "price": 275,
+    "currency": "$",
+    "image": "/assets/perfumes/perfume.jpg",
+    "volume": "75ml",
+    "gender": "unisex",
+    "description": "A spicy and noble fragrance with saffron, black tea, and a hint of burnt sugar."
+  },
+  {
+    "id": 8,
+    "title": "Oceanic Mist",
+    "price": 150,
+    "currency": "$",
+    "image": "/assets/perfumes/perfume.jpg",
+    "volume": "50ml",
+    "gender": "male",
+    "description": "A light aquatic fragrance reminiscent of ocean spray and coastal citrus blooms."
+  },
+  {
+    "id": 9,
+    "title": "Vanilla Dream",
+    "price": 190,
+    "currency": "$",
+    "image": "/assets/perfumes/perfume.jpg",
+    "volume": "30ml",
+    "gender": "female",
+    "description": "A sweet gourmand scent with Bourbon vanilla, creamy caramel, and tonka beans."
+  },
+  {
+    "id": 10,
+    "title": "Forest Pine",
+    "price": 145,
+    "currency": "$",
+    "image": "/assets/perfumes/perfume.jpg",
+    "volume": "100ml",
+    "gender": "male",
+    "description": "A cool forest scent with notes of pine needles, cedarwood, and damp moss."
+  }
+]
