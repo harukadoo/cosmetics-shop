@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+:root {
+    --index: calc(1vw + 1vh)
+}
+
+body {
+    background-color: #ffffff;
+}
+
+$defaultTextSize: calc(var(--index) * .8);
+$bigTextSize: calc(var(--index) * 1);
+$defaultBlack: #090909;
+$defaultWhite: #ffffff;
+$opacityWhite: #ffffff75;
+$opacityText: #090909bd;
+$grey: #0000002b;
