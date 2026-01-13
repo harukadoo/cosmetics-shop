@@ -3,13 +3,28 @@ import '../../styles/homePage/homepage.scss';
 import plus from '../../images/plus.svg';
 import GroupedMenu from '../../components/menu/GroupedMenu';
 import BasicMenu from '../../components/menu/BasicMenu';
+import PriceFilter from '../../components/filters/PriceFilter';
 import { IPerfume } from '../../types';
 import perfumesDataRaw from '../../api/perfume.json';
+import { useState, useMemo } from 'react';
 
 const perfumesData: IPerfume[] = perfumesDataRaw as IPerfume[];
 
 export const HomePage = () => {
+    const [minPrice, setMinPrice] = useState(100);
+    const [maxPrice, setMaxPrice] = useState(400);
     const featuredPerfume = perfumesData[0];
+
+    const filteredPerfumes = useMemo(() => {
+        return perfumesData.filter(perfume => 
+            perfume.price >= minPrice && perfume.price <= maxPrice
+        );
+    }, [minPrice, maxPrice]);
+
+    const handlePriceChange = (min: number, max: number) => {
+        setMinPrice(min);
+        setMaxPrice(max);
+    };
 
     return (
         <div className="home">
@@ -38,7 +53,8 @@ export const HomePage = () => {
                     <div className="main__container">
                         <div className="main__container__head">
                             <div className="main__container__head__filter">
-                                <GroupedMenu />     
+                                <GroupedMenu />
+                                <PriceFilter onPriceChange={handlePriceChange} minPrice={minPrice} maxPrice={maxPrice} />     
                             </div>
 
                             <p className="main__container__head__title">all perfumes</p>
@@ -49,7 +65,7 @@ export const HomePage = () => {
                         </div>
 
                         <div className="main__container__items">
-                            {perfumesData.map((perfume) => (
+                            {filteredPerfumes.map((perfume) => (
                                 <Item key={perfume.id} perfume={perfume} />
                             ))}
                         </div>

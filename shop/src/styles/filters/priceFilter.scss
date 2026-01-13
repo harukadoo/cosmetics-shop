@@ -1,0 +1,26 @@
+.price-filter-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.price-filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+
+    .price-range-display {
+        color: var(--color-primary, #000);
+        font-weight: bold;
+    }
+}
+
+.price-filter-presets {
+    margin-top: 15px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 10px;
+}
