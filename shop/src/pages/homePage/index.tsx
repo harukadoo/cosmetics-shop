@@ -1,7 +1,6 @@
 import { Item } from '../../components/item';
 import '../../styles/homePage/homepage.scss';
 import plus from '../../images/plus.svg';
-import GroupedMenu from '../../components/menu/GroupedMenu';
 import BasicMenu from '../../components/menu/BasicMenu';
 import PriceFilter from '../../components/filters/PriceFilter';
 import { IPerfume } from '../../types';
@@ -53,7 +52,6 @@ export const HomePage = () => {
                     <div className="main__container">
                         <div className="main__container__head">
                             <div className="main__container__head__filter">
-                                <GroupedMenu />
                                 <PriceFilter onPriceChange={handlePriceChange} minPrice={minPrice} maxPrice={maxPrice} />     
                             </div>
 
