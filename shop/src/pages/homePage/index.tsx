@@ -1,20 +1,20 @@
 import { Item } from '../../components/item';
 import '../../styles/homePage/homepage.scss';
 import plus from '../../images/plus.svg';
-import GroupedMenu from '../../components/menu/GroupedMenu';
 import BasicMenu from '../../components/menu/BasicMenu';
+import PriceFilter from '../../components/filters/PriceFilter';
 import { IPerfume } from '../../types';
 import perfumesDataRaw from '../../api/perfume.json';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setProducts, selectSortedProducts } from '../../store/slices/productsSlice';
 import { ItemCard } from '../../components/itemCard';
 
 const perfumesData: IPerfume[] = perfumesDataRaw as IPerfume[];
-const ITEMS_PER_PAGE = 8;
-
-export const HomePage = () => {
+const ITEMS_PER_PAGE = 8    const [minPrice, setMinPrice] = useState(100);
+    const [maxPrice, setMaxPrice] = useState(400);
+    const featuredPerfume = perfumesData[0];
     const dispatch = useDispatch();
     const sortedProducts = useSelector(selectSortedProducts);
 
@@ -30,15 +30,24 @@ export const HomePage = () => {
         setVisibleCount(prevCount => prevCount + ITEMS_PER_PAGE);
     };
 
-    // 2. Функция открытия (передаем её в Item)
     const handleItemClick = (perfume: IPerfume) => {
         setSelectedPerfume(perfume);
     };
 
-    // 3. Функция закрытия (передаем её в ItemCard)
     const handleCloseCard = () => {
         setSelectedPerfume(null);
     }
+
+    const filteredPerfumes = useMemo(() => {
+        return perfumesData.filter(perfume => 
+            perfume.price >= minPrice && perfume.price <= maxPrice
+        );
+    }, [minPrice, maxPrice]);
+
+    const handlePriceChange = (min: number, max: number) => {
+        setMinPrice(min);
+        setMaxPrice(max);
+    };
 
     return (
         <div className="home">
@@ -73,6 +82,7 @@ export const HomePage = () => {
                     <div className="main__container">
                         <div className="main__container__head">
                             <div className="main__container__head__filter">
+                                <PriceFilter onPriceChange={handlePriceChange} minPrice={minPrice} maxPrice={maxPrice} />     
                                 <GroupedMenu />
                             </div>
 
@@ -84,6 +94,8 @@ export const HomePage = () => {
                         </div>
 
                         <div className="main__container__items">
+                            {filteredPerfumes.map((perfume) => (
+                                <Item key={perfume.id} perfume={perfume} />
                             {sortedProducts.slice(0, visibleCount).map((perfume) => (
                                 <Item key={perfume.id} perfume={perfume} onItemClick={handleItemClick}/>
                             ))}
