@@ -82,7 +82,7 @@
   {
     "id": 9,
     "title": "Vanilla Dream",
-    "price": 190,
+    "price": 499,
     "currency": "$",
     "image": "/assets/perfumes/perfume.jpg",
     "volume": "30ml",
@@ -92,7 +92,7 @@
   {
     "id": 10,
     "title": "Forest Pine",
-    "price": 145,
+    "price": 500,
     "currency": "$",
     "image": "/assets/perfumes/perfume.jpg",
     "volume": "100ml",

@@ -11,20 +11,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setProducts, selectSortedProducts } from '../../store/slices/productsSlice';
 import { ItemCard } from '../../components/itemCard';
 
-const perfumesData: IPerfume[] = perfumesDataRaw as IPerfume[];
-const ITEMS_PER_PAGE = 8    const [minPrice, setMinPrice] = useState(100);
+export const HomePage = () => {
+    const perfumesData: IPerfume[] = perfumesDataRaw as IPerfume[];
+    const ITEMS_PER_PAGE = 8;
+
+    const [minPrice, setMinPrice] = useState(100);
     const [maxPrice, setMaxPrice] = useState(400);
-    const featuredPerfume = perfumesData[0];
+    const [visibleCount, setVisibleCount] = useState<number>(ITEMS_PER_PAGE);
+    const [selectedPerfume, setSelectedPerfume] = useState<IPerfume | null>(null);
+
     const dispatch = useDispatch();
     const sortedProducts = useSelector(selectSortedProducts);
-
-    const [visibleCount, setVisibleCount] = useState<number>(ITEMS_PER_PAGE);
-    const isShowButton = visibleCount < sortedProducts.length;
-    const [selectedPerfume, setSelectedPerfume] = useState<IPerfume | null>(null);
 
     useEffect(() => {
         dispatch(setProducts(perfumesData));
     }, [dispatch]);
+
+    const processedProducts = useMemo(() => {
+        return sortedProducts.filter(perfume =>
+            perfume.price >= minPrice && perfume.price <= maxPrice
+        );
+    }, [sortedProducts, minPrice, maxPrice]);
+
+    const isShowButton = visibleCount < processedProducts.length;
 
     const handleLoadMore = () => {
         setVisibleCount(prevCount => prevCount + ITEMS_PER_PAGE);
@@ -38,23 +47,18 @@ const ITEMS_PER_PAGE = 8    const [minPrice, setMinPrice] = useState(100);
         setSelectedPerfume(null);
     }
 
-    const filteredPerfumes = useMemo(() => {
-        return perfumesData.filter(perfume => 
-            perfume.price >= minPrice && perfume.price <= maxPrice
-        );
-    }, [minPrice, maxPrice]);
-
     const handlePriceChange = (min: number, max: number) => {
         setMinPrice(min);
         setMaxPrice(max);
+        setVisibleCount(ITEMS_PER_PAGE);
     };
 
     return (
         <div className="home">
             {selectedPerfume && (
-                <ItemCard 
-                    perfume={selectedPerfume} 
-                    onClose={handleCloseCard} 
+                <ItemCard
+                    perfume={selectedPerfume}
+                    onClose={handleCloseCard}
                 />
             )}
             <div className="home__container">
@@ -65,9 +69,9 @@ const ITEMS_PER_PAGE = 8    const [minPrice, setMinPrice] = useState(100);
                                 <img className="item-card__container__img"></img>
 
                                 <div className="item-card__container__info">
-                                    <button className="item-card__container__info__btn" title="add to cart">
+                                    {/* <button className="item-card__container__info__btn" title="add to cart">
                                         <img src={plus} alt="plus" />
-                                    </button>
+                                    </button> */}
 
                                     <p className="item-card__container__info__title">perfume bal d'arfique</p>
                                     <p className="item-card__container__info__price">165 $</p>
@@ -82,8 +86,8 @@ const ITEMS_PER_PAGE = 8    const [minPrice, setMinPrice] = useState(100);
                     <div className="main__container">
                         <div className="main__container__head">
                             <div className="main__container__head__filter">
-                                <PriceFilter onPriceChange={handlePriceChange} minPrice={minPrice} maxPrice={maxPrice} />     
-                                <GroupedMenu />
+                                <PriceFilter onPriceChange={handlePriceChange} minPrice={minPrice} maxPrice={maxPrice} />
+
                             </div>
 
                             <p className="main__container__head__title">all perfumes</p>
@@ -94,11 +98,19 @@ const ITEMS_PER_PAGE = 8    const [minPrice, setMinPrice] = useState(100);
                         </div>
 
                         <div className="main__container__items">
-                            {filteredPerfumes.map((perfume) => (
-                                <Item key={perfume.id} perfume={perfume} />
-                            {sortedProducts.slice(0, visibleCount).map((perfume) => (
-                                <Item key={perfume.id} perfume={perfume} onItemClick={handleItemClick}/>
-                            ))}
+                            {processedProducts.length > 0 ? (
+                                processedProducts.slice(0, visibleCount).map((perfume) => (
+                                    <Item
+                                        key={perfume.id}
+                                        perfume={perfume}
+                                        onItemClick={handleItemClick}
+                                    />
+                                ))
+                            ) : (
+                                <div className="main__container__no-items">
+                                    no item was found
+                                </div>
+                            )}
                         </div>
 
                         {isShowButton && (

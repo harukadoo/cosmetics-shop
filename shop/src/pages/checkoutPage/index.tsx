@@ -1,4 +1,16 @@
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { CartItem } from '../../components/cartItem';
+import '../../styles/checkoutPage/checkoutpage.scss';
+
 export const CheckoutPage = () => {
+    const { items } = useSelector((state: RootState) => state.cart);
+
+    const subTotal = items.reduce((sum, item) => sum + item.price * item.count, 0);
+    const deliveryCost = subTotal > 0 ? 15 : 0; 
+    const total = subTotal + deliveryCost;
+
     return (
         <div className="checkout-page">
             <div className="checkout-page__container">
@@ -8,11 +20,9 @@ export const CheckoutPage = () => {
                     <div className="checkout__container">
                         <div className="personal-info">
                             <div className="personal-info__container">
-                                {/* 1. SECTION: PERSONAL INFORMATION */}
                                 <div className="personal-info__section">
                                     <h2 className="personal-info__title">Personal information:</h2>
-                                    
-                                    {/* Row: First Name & Last Name */}
+
                                     <div className="personal-info__row">
                                         <div className="personal-info__field">
                                             <label className="personal-info__label" htmlFor="first-name">First name</label>
@@ -24,7 +34,6 @@ export const CheckoutPage = () => {
                                         </div>
                                     </div>
 
-                                    {/* Row: Phone & Email */}
                                     <div className="personal-info__row">
                                         <div className="personal-info__field">
                                             <label className="personal-info__label" htmlFor="phone">Phone</label>
@@ -37,49 +46,49 @@ export const CheckoutPage = () => {
                                     </div>
                                 </div>
 
-                                {/* 2. SECTION: DELIVERY DETAILS */}
                                 <div className="personal-info__section">
                                     <h2 className="personal-info__title">Delivery details:</h2>
 
-                                    {/* Row: Country & City */}
                                     <div className="personal-info__row">
                                         <div className="personal-info__field">
                                             <label className="personal-info__label" htmlFor="country">Country / Region</label>
-                                            <div className="personal-info__select-wrapper">
-                                                <select className="personal-info__select" id="country">
-                                                    <option value="uk">United Kingdom (UK)</option>
-                                                </select>
-                                            </div>
+                                            <input
+                                                className="personal-info__input"
+                                                type="text"
+                                                id="country"
+                                                placeholder="Country"
+                                            />
                                         </div>
+
                                         <div className="personal-info__field">
                                             <label className="personal-info__label" htmlFor="city">Town / City</label>
-                                            <div className="personal-info__select-wrapper">
-                                                <select className="personal-info__select" id="city">
-                                                    <option value="london">London</option>
-                                                </select>
-                                            </div>
+                                            <input
+                                                className="personal-info__input"
+                                                type="text"
+                                                id="city"
+                                                placeholder="City"
+                                            />
                                         </div>
                                     </div>
 
-                                    {/* Row: Street & Postcode */}
                                     <div className="personal-info__row">
                                         <div className="personal-info__field">
                                             <label className="personal-info__label" htmlFor="street">Street</label>
-                                            <input className="personal-info__input" type="text" id="street" />
+                                            <input className="personal-info__input" type="text" id="street" placeholder="Street" />
                                         </div>
                                         <div className="personal-info__field">
                                             <label className="personal-info__label" htmlFor="postcode">Postcode</label>
-                                            <input className="personal-info__input" type="text" id="postcode" />
+                                            <input className="personal-info__input" type="text" id="postcode" placeholder="Postcode" />
                                         </div>
                                     </div>
 
-                                    {/* Row: Packaging & Shipping */}
                                     <div className="personal-info__row">
                                         <div className="personal-info__field">
                                             <label className="personal-info__label" htmlFor="packaging">Packaging type</label>
                                             <div className="personal-info__select-wrapper">
                                                 <select className="personal-info__select" id="packaging">
                                                     <option value="no-plastic">Without plastic</option>
+                                                    <option value="no-plastic">With plastic</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -94,72 +103,59 @@ export const CheckoutPage = () => {
                                     </div>
                                 </div>
 
-                                {/* 3. SECTION: PAYMENT */}
                                 <div className="personal-info__section">
                                     <h2 className="personal-info__title">Payment:</h2>
 
-                                    {/* Option: Apple Pay */}
                                     <label className="personal-info__payment-option">
                                         <div className="personal-info__payment-check">
-                                            <input type="radio" name="payment" className="personal-info__radio" />
+                                            <input type="radio" name="payment" value="apple-pay" className="personal-info__radio" />
                                             <span className="personal-info__radio-text">Apple Pay</span>
                                         </div>
-                                        <div className="personal-info__payment-icons">
-                                            {/* <img src={ApplePayIcon} alt="Apple Pay" /> */}
-                                            <span>Pay</span> 
-                                        </div>
                                     </label>
 
-                                    {/* Option: PayPal */}
                                     <label className="personal-info__payment-option">
                                         <div className="personal-info__payment-check">
-                                            <input type="radio" name="payment" className="personal-info__radio" />
+                                            <input type="radio" name="payment" value="paypal" className="personal-info__radio" />
                                             <span className="personal-info__radio-text">PayPal</span>
                                         </div>
-                                        <div className="personal-info__payment-icons">
-                                            <span style={{color: '#003087', fontWeight: 'bold'}}>PayPal</span>
-                                        </div>
                                     </label>
-
-                                    {/* Option: Credit Card (Selected) */}
-                                    <div className="personal-info__credit-card-group">
-                                        <label className="personal-info__payment-option personal-info__payment-option--active">
-                                            <div className="personal-info__payment-check">
-                                                {/* Имитация чекбокса для выбранного состояния */}
-                                                <div className="personal-info__checkbox-fake checked"></div>
-                                                <span className="personal-info__radio-text">Credit or debit card</span>
-                                            </div>
-                                            <div className="personal-info__payment-icons">
-                                                {/* Сюда иконки Visa/Mastercard */}
-                                                <span style={{marginRight: '5px'}}>🔴</span>
-                                                <span>🔵</span>
-                                            </div>
-                                        </label>
-
-                                        {/* Nested Inputs for Credit Card */}
-                                        <div className="personal-info__credit-card-details">
-                                            <div className="personal-info__row">
-                                                <div className="personal-info__field personal-info__field--wide">
-                                                    <label className="personal-info__label" htmlFor="card-number">Card number</label>
-                                                    <input className="personal-info__input" type="text" id="card-number" />
-                                                </div>
-                                                <div className="personal-info__field personal-info__field--small">
-                                                    <label className="personal-info__label" htmlFor="expiration">Expiration date</label>
-                                                    <input className="personal-info__input" type="text" id="expiration" />
-                                                </div>
-                                                <div className="personal-info__field personal-info__field--small">
-                                                    <label className="personal-info__label" htmlFor="cvv">CVV code</label>
-                                                    <input className="personal-info__input" type="text" id="cvv" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
 
-                        <div className="order"></div>
+                        <div className="order">
+                            <div className="order__container">
+                                <h2 className="order__title">Your order:</h2>
+
+                                <div className="order__summary">
+                                    <div className="order__row">
+                                        <span className="order__label">Subtotal:</span>
+                                        <span className="order__value">{subTotal} $</span>
+                                    </div>
+                                    <div className="order__row">
+                                        <span className="order__label">Delivery:</span>
+                                        <span className="order__value">{deliveryCost} $</span>
+                                    </div>
+                                    <div className="order__divider"></div>
+                                    <div className="order__row order__row--total">
+                                        <span className="order__label">Total:</span>
+                                        <span className="order__value">{total} $</span>
+                                    </div>
+                                </div>
+
+                                <button className="order__btn">Purchase</button>
+
+                                <div className="order__items-list">
+                                    {items.length === 0 ? (
+                                        <p style={{textAlign: 'center', color: '#999'}}>Your cart is empty</p>
+                                    ) : (
+                                        items.map((item) => (
+                                            <CartItem key={item.id} item={item} />
+                                        ))
+                                    )}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
