@@ -1,13 +1,13 @@
 @import "../defines.scss";
 
-.header{
+.header {
     width: 100%;
     height: max-content;
     position: fixed;
     background-color: $defaultWhite;
     z-index: 99;
 
-    &__container{
+    &__container {
         padding: calc(var(--index) * 1.2) calc(var(--index) * 3);
         display: flex;
         flex-direction: row;
@@ -15,41 +15,75 @@
         align-items: center;
         gap: calc(var(--index) * 1);
 
-        &__left-nav{
+        &__left-nav {
             display: flex;
             flex-direction: row;
             gap: calc(var(--index) * 2);
 
-            & > *{
+            &>* {
                 font-size: $defaultTextSize;
                 text-transform: uppercase;
                 text-decoration: none;
                 color: $defaultBlack;
 
-                &:hover{
+                &:hover {
                     text-decoration: underline;
                 }
             }
         }
 
-        &__right-nav{
+        &__right-nav {
             display: flex;
             flex-direction: row;
+            align-items: center;
             gap: calc(var(--index) * 2);
 
-            & > *{
+            &>* {
                 font-size: $defaultTextSize;
                 text-transform: uppercase;
                 text-decoration: none;
                 color: $defaultBlack;
 
-                &:hover{
+                &:hover {
                     text-decoration: underline;
                 }
             }
+
+            &__search-active {
+                &__search-input {
+                    font-size: $smallTextSize;
+                    padding: calc(var(--index) * .3) calc(var(--index) * .5);
+                    border-radius: 5px;
+                    border: 1.5px solid $opacityText;
+                    background-color: $opacityWhite;
+                    outline: none;
+                }
+
+                &__close-btn {
+                    background: none;
+                    outline: none;
+                    border: none;
+                    cursor: pointer;
+                    font-size: $defaultTextSize;
+                    margin-left: calc(var(--index) * .5);
+                    transition: .4s;
+
+                    &:hover {
+                        opacity: .5;
+                        transition: .4s;
+                    }
+                }
+            }
+
+            &__nav-btn {
+                background: none;
+                outline: none;
+                border: none;
+                cursor: pointer;
+            }
         }
 
-        &__logo{
+        &__logo {
             font-family: "Big Shoulders Stencil", sans-serif;
             font-size: calc(var(--index) * 1.5);
             text-decoration: none;
