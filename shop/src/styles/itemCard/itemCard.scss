@@ -1,0 +1,95 @@
+@import "../defines.scss";
+
+.item-card__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    .item-card__modal {
+        background: white;
+        width: calc(var(--index) * 20);
+        height: calc(var(--index) * 30);
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: calc(var(--index) * .7) calc(var(--index) * 1);
+        border-radius: calc(var(--index) * .6);
+
+        .close-btn {
+            float: right;
+            font-size: $bigTextSize;
+            background: none;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            transition: .4s;
+
+            &:hover {
+                opacity: .5;
+                transition: .4s;
+            }
+        }
+
+        .item-card__content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: calc(var(--index) * .8);
+
+            img {
+                width: calc(var(--index) * 15);
+                margin-top: calc(var(--index) * -2);
+            }
+
+            .info {
+                width: calc(var(--index) * 15);
+
+                h2 {
+                    font-size: $bigTextSize;
+                    margin-bottom: calc(var(--index) * .8);
+                    font-weight: 600;
+                }
+
+                &__description {
+                    font-size: $smallTextSize;
+                    margin-bottom: calc(var(--index) * 1.4);
+                }
+
+                .info-2 {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+
+                    &__price {
+                        font-size: $bigTextSize;
+                        margin-bottom: calc(var(--index) * .6);
+                    }
+                }
+            }
+
+            .item-card__add-to-cart {
+                width: 100%;
+                cursor: pointer;
+                background-color: $lightBlue;
+                border: 1px solid $grey;
+                font-size: $defaultTextSize;
+                padding: calc(var(--index) * .2) calc(var(--index) * .2);
+                border-radius: calc(var(--index) * .25);
+                transition: .4s;
+
+                &:hover {
+                    opacity: .5;
+                    transition: .4s;
+                }
+            }
+        }
+    }
+
+
+}

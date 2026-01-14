@@ -20,8 +20,10 @@ body {
 
 $defaultTextSize: calc(var(--index) * .8);
 $bigTextSize: calc(var(--index) * 1);
+$smallTextSize: calc(var(--index) * .7);
 $defaultBlack: #090909;
 $defaultWhite: #ffffff;
 $opacityWhite: #ffffff75;
 $opacityText: #090909bd;
 $grey: #0000002b;
+$lightBlue: rgb(223, 251, 255);

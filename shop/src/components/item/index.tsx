@@ -1,17 +1,36 @@
 import '../../styles/item/item.scss'
-import perfumeImg from '../../images/perfume.jpg';
 import plus from '../../images/plus.svg';
 import { IPerfume } from '../../types';
+import React from 'react';
+
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../store/slices/cartSlice';
 
 interface ItemProps {
     perfume: IPerfume;
+    onItemClick: (perfume: IPerfume) => void;
 }
 
-export const Item: React.FC<ItemProps> = ({ perfume }) => {
+export const Item: React.FC<ItemProps> = ({ perfume, onItemClick }) => {
+    const dispatch = useDispatch();
+
+    const onClickAdd = (e: React.MouseEvent) => {
+        e.stopPropagation(); 
+        dispatch(addToCart(perfume));
+    };;
+
     return (
         <div className="item">
-            <div className="item__container">
-                <button className="item__container__btn" title="add to cart">
+            <div 
+                className="item__container" 
+                onClick={() => onItemClick(perfume)}
+                style={{ cursor: 'pointer' }}
+            >
+                <button 
+                    className="item__container__btn" 
+                    title="add to cart"
+                    onClick={onClickAdd} 
+                >
                     <img src={plus} alt="plus" />
                 </button>
 
