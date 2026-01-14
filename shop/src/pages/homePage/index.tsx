@@ -72,17 +72,21 @@ export const HomePage = () => {
             <div className="home__container">
                 <div className="hero">
                     <div className="hero__container">
-                        <div className="item-card">
+                        <div
+                            className="item-card"
+                            onClick={() => handleItemClick(featuredPerfume)}
+                            style={{ cursor: 'pointer' }}
+                        >
                             <div className="item-card__container">
-                                <img 
-                                    src={featuredPerfume.image} 
+                                <img
+                                    src={featuredPerfume.image}
                                     alt={featuredPerfume.title}
-                                    className="item-card__container__img" 
+                                    className="item-card__container__img"
                                 />
 
                                 <div className="item-card__container__info">
-                                    <button 
-                                        className="item-card__container__info__btn" 
+                                    <button
+                                        className="item-card__container__info__btn"
                                         title="add to cart"
                                         onClick={handleAddHeroItemToCart}
                                     >

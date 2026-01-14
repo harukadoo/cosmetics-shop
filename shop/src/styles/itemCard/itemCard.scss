@@ -76,11 +76,13 @@
             .item-card__add-to-cart {
                 width: 100%;
                 cursor: pointer;
-                background-color: $lightBlue;
-                border: 1px solid $grey;
+                background-color: $blue;
+                border: none;
+                outline: none;
                 font-size: $defaultTextSize;
-                padding: calc(var(--index) * .2) calc(var(--index) * .2);
+                padding: calc(var(--index) * .4) calc(var(--index) * .2);
                 border-radius: calc(var(--index) * .25);
+                color: $defaultWhite;
                 transition: .4s;
 
                 &:hover {
@@ -90,6 +92,61 @@
             }
         }
     }
+}
 
+@media (max-width: 680px) {
+    .item-card__overlay {
+        .item-card__modal {
+            width: calc(var(--index) * 30);
+            height: calc(var(--index) * 40);
+            padding: calc(var(--index) * .7) calc(var(--index) * 1.3);
+            border-radius: calc(var(--index) * .6);
 
+            .close-btn {
+                float: right;
+                font-size: calc(var(--index) * 2);
+            }
+
+            .item-card__content {
+                gap: calc(var(--index) * 1.2);
+
+                img {
+                    width: calc(var(--index) * 22);
+                    margin-top: calc(var(--index) * -1);
+                }
+
+                .info {
+                    width: calc(var(--index) * 22);
+
+                    h2 {
+                        font-size: calc(var(--index) * 1.6);
+                        margin-bottom: calc(var(--index) * 1.2);
+                        font-weight: 600;
+                    }
+
+                    &__description {
+                        font-size: calc(var(--index) * 1.2);
+                        margin-bottom: calc(var(--index) * 2);
+                    }
+
+                    .info-2 {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+
+                        &__price {
+                            font-size:calc(var(--index) * 1.6);
+                            margin-bottom: calc(var(--index) * 1.2);
+                        }
+                    }
+                }
+
+                .item-card__add-to-cart {
+                    width: calc(var(--index) * 22);
+                    font-size: $fontForPhone;
+                    padding: calc(var(--index) * .7) calc(var(--index) * .2);
+                }
+            }
+        }
+    }
 }

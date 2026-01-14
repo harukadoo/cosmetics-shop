@@ -4,7 +4,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import arrowDown from '../../images/chevron-down.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSortType, SortType } from '../../store/slices/productsSlice'; // Путь к твоему слайсу
+import { setSortType, SortType } from '../../store/slices/productsSlice'; 
 import { RootState } from '../../store/store';
 
 export default function BasicMenu() {
@@ -19,8 +19,8 @@ export default function BasicMenu() {
     };
 
     const handleSort = (type: SortType) => {
-        dispatch(setSortType(type)); // Отправляем экшен в Redux
-        handleClose(); // Закрываем меню
+        dispatch(setSortType(type)); 
+        handleClose(); 
     };
 
     return (

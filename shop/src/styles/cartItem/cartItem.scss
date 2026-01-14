@@ -1,11 +1,12 @@
 @import "../defines.scss";
 
-.cart-item{
+.cart-item {
     width: 100%;
     height: calc(var(--index) * 4);
     border-bottom: 1px solid $grey;
     margin-bottom: calc(var(--index) * .7);
-    &__container{
+
+    &__container {
         width: 100%;
         height: 100%;
         display: flex;
@@ -13,22 +14,22 @@
         justify-content: space-between;
         padding-bottom: calc(var(--index) * .3);
 
-        &__img{
+        &__img {
             height: 100%;
         }
 
-        &__first-column{
+        &__first-column {
             height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             gap: calc(var(--index) * 1);
 
-            &__title{
+            &__title {
                 font-size: $smallTextSize;
             }
 
-            &__quantity{
+            &__quantity {
                 width: max-content;
                 display: flex;
                 align-items: center;
@@ -36,7 +37,8 @@
                 border: 1px solid $grey;
                 border-radius: 5px;
                 padding: 0 calc(var(--index) * .4);
-                &__btn{
+
+                &__btn {
                     background: none;
                     outline: none;
                     border: none;
@@ -47,7 +49,7 @@
             }
         }
 
-        &__second-column{
+        &__second-column {
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -55,7 +57,7 @@
             align-items: flex-end;
             gap: calc(var(--index) * 1.2);
 
-            &__btn{
+            &__btn {
                 background: none;
                 outline: none;
                 border: none;
@@ -63,9 +65,84 @@
                 font-size: $defaultTextSize;
             }
 
-            &__price{
+            &__price {
                 font-size: $smallTextSize;
             }
         }
     }
+}
+
+@media (max-width: 680px) {
+    .cart-item {
+        width: 100%;
+        height: calc(var(--index) * 9);
+        border-bottom: 1px solid $grey;
+        margin-bottom: calc(var(--index) * 1.2);
+
+        &__container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: calc(var(--index) * .3);
+
+            &__img {
+                height: 100%;
+            }
+
+            &__first-column {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: calc(var(--index) * 2);
+
+                &__title {
+                    font-size: $fontForPhone;
+                }
+
+                &__quantity {
+                    width: max-content;
+                    display: flex;
+                    align-items: center;
+                    gap: calc(var(--index) * 1.5);
+                    border: 1px solid $grey;
+                    border-radius: 5px;
+                    padding: 0 calc(var(--index) * .6);
+
+                    &__btn {
+                        background: none;
+                        outline: none;
+                        border: none;
+                        cursor: pointer;
+                        font-size: calc(var(--index) * 1.6);
+                        font-weight: 400;
+                    }
+                }
+            }
+
+            &__second-column {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-end;
+                gap: calc(var(--index) * 3.4);
+
+                &__btn {
+                    background: none;
+                    outline: none;
+                    border: none;
+                    cursor: pointer;
+                    font-size: calc(var(--index) * 1.6);
+                }
+
+                &__price {
+                    font-size: $fontForPhone;
+                }
+            }
+        }
+    }
+
 }

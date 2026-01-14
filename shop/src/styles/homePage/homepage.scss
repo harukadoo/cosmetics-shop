@@ -32,7 +32,7 @@
                     height: 100%;
                     display: flex;
                     flex-direction: row;
-                   
+
                     overflow: hidden;
 
                     &__img {
@@ -63,6 +63,10 @@
                             opacity: .9;
                             transition: .4s;
                             margin-right: calc(var(--index) * -1.2);
+
+                            img {
+                                width: calc(var(--index) * 1.2);
+                            }
 
                             &:hover {
                                 opacity: .5;
@@ -164,6 +168,115 @@
 
                     &:hover {
                         text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 680px) {
+    .home {
+        &__container {
+            .hero {
+                .item-card {
+                    width: 80%;
+                    height: calc(var(--index) * 17);
+                    right: calc(var(--index) * 0);
+
+                    &__container {
+
+                        &__info {
+                            width: 50%;
+                            padding: calc(var(--index) * 2) calc(var(--index) * .6) calc(var(--index) * .6) calc(var(--index) * 1.4);
+
+                            p {
+                                font-size: $fontForPhone;
+                                text-transform: uppercase;
+                                color: $defaultBlack;
+                            }
+
+                            &__btn {
+                                background: none;
+                                outline: none;
+                                border: none;
+                                font-size: $fontForPhone;
+                                float: right;
+                                cursor: pointer;
+                                opacity: .9;
+                                transition: .4s;
+                                margin-right: calc(var(--index) * -1.2);
+                                margin-top: calc(var(--index) * -1);
+
+                                img {
+                                    width: calc(var(--index) * 2.4);
+                                }
+
+                                &:hover {
+                                    opacity: .5;
+                                    transition: .4s;
+                                }
+                            }
+
+                            &__title {
+                                padding-bottom: calc(var(--index) * .9);
+                                font-weight: 600;
+                                margin-top: calc(var(--index) * 1.2);
+                            }
+
+                            &__price {
+                                padding-top: calc(var(--index) * 1);
+                                padding-bottom: calc(var(--index) * 2);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .main {
+                &__container {
+                    &__head {
+
+                        &__filter {
+                            &__btn {
+                                font-size: $fontForPhone;
+
+                                img {
+                                    width: calc(var(--index) * 1.4);
+                                    height: calc(var(--index) * 1.4);
+                                }
+                            }
+                        }
+
+                        &__title {
+                            font-size: $fontForPhone;
+
+                        }
+
+                        &__sort {
+                            &__btn {
+                                font-size: $fontForPhone;
+
+                                img {
+                                    width: calc(var(--index) * 1.4);
+                                    height: calc(var(--index) * 1.4);
+                                }
+                            }
+                        }
+                    }
+
+                    &__items {
+                        display: flex;
+                        justify-content: center;
+                        margin-top: calc(var(--index) * 3);
+                        row-gap: calc(var(--index) * 4);
+                        column-gap: calc(var(--index) * 2);
+                        flex-wrap: wrap;
+                    }
+
+                    &__more-items {
+                        font-size: $fontForPhone;
                     }
                 }
             }

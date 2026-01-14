@@ -6,6 +6,8 @@
     position: fixed;
     background-color: $defaultWhite;
     z-index: 99;
+    border-bottom: 1px solid transparent;
+    transition: 0.3s;
 
     &__container {
         padding: calc(var(--index) * 1.2) calc(var(--index) * 3);
@@ -14,6 +16,9 @@
         justify-content: space-between;
         align-items: center;
         gap: calc(var(--index) * 1);
+        position: relative;
+        z-index: 101;
+        background-color: $defaultWhite;
 
         &__left-nav {
             display: flex;
@@ -49,6 +54,10 @@
                 }
             }
 
+            .header__nav-account {
+                display: block;
+            }
+
             &__search-active {
                 &__search-input {
                     font-size: $smallTextSize;
@@ -70,7 +79,6 @@
 
                     &:hover {
                         opacity: .5;
-                        transition: .4s;
                     }
                 }
             }
@@ -88,6 +96,163 @@
             font-size: calc(var(--index) * 1.5);
             text-decoration: none;
             color: $defaultBlack;
+        }
+    }
+
+    &__burger {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 102;
+
+        span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: $defaultBlack;
+            transition: 0.3s;
+        }
+
+        &.active {
+            span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 6px);
+            }
+
+            span:nth-child(2) {
+                opacity: 0;
+            }
+
+            span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -6px);
+            }
+        }
+    }
+
+    &__mobile-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: $defaultWhite;
+        z-index: 100;
+        padding-top: calc(var(--index) * 5);
+        transform: translateY(-100%);
+        transition: transform 0.4s ease-in-out;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+
+        &.active {
+            transform: translateY(0);
+        }
+
+        &__logo {
+            font-family: "Big Shoulders Stencil", sans-serif;
+            font-size: calc(var(--index) * 2.5); 
+            text-decoration: none;
+            color: $defaultBlack;
+            margin-bottom: calc(var(--index) * 3); 
+        }
+
+        &__nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: calc(var(--index) * 2);
+
+            a {
+                font-size: calc(var(--index) * 1.5);
+                text-transform: uppercase;
+                text-decoration: none;
+                color: $defaultBlack;
+                font-weight: 500;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 680px) {
+    .header {
+        &__container {
+            &__logo {
+                display: none;
+            }
+
+            &__left-nav {
+                display: none;
+            }
+
+            &__right-nav {
+                justify-content: flex-end;
+                gap: calc(var(--index) * 2.4);
+
+                &>* {
+                    font-size: calc(var(--index) * 1.4);
+                    text-transform: uppercase;
+                    text-decoration: none;
+                    color: $defaultBlack;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+
+                .header__nav-account {
+                    display: none;
+                }
+
+                &__search-active {
+                    &__search-input {
+                        font-size: calc(var(--index) * 1.4);
+                        padding: calc(var(--index) * .3) calc(var(--index) * .5);
+                        border-radius: 5px;
+                        border: 1.5px solid $opacityText;
+                        background-color: $opacityWhite;
+                        outline: none;
+                    }
+
+                    &__close-btn {
+                        background: none;
+                        outline: none;
+                        border: none;
+                        cursor: pointer;
+                        font-size: calc(var(--index) * 1.4);
+                        margin-left: calc(var(--index) * .5);
+                        transition: .4s;
+
+                        &:hover {
+                            opacity: .5;
+                        }
+
+                    }
+
+                }
+
+                &__nav-btn {
+                    background: none;
+                    outline: none;
+                    border: none;
+                    cursor: pointer;
+                }
+
+            }
+        }
+
+        &__burger {
+            display: flex;
         }
     }
 }

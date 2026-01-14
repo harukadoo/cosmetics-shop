@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom'; // Для навигации
+import { useNavigate } from 'react-router-dom'; 
 import { RootState } from '../../store/store';
 import { CartItem } from '../../components/cartItem';
-import { clearCart } from '../../store/slices/cartSlice'; // Импортируем экшен очистки
+import { clearCart } from '../../store/slices/cartSlice';
 import '../../styles/checkoutPage/checkoutpage.scss';
 import { OrderMessage } from '../../components/messages/OrderMessage';
 
@@ -27,28 +27,22 @@ export const CheckoutPage = () => {
         postcode: '',
     });
 
-    // 2. Стейт для ошибок
     const [errors, setErrors] = useState<Record<string, string>>({});
-    
-    // 3. Стейт для показа окна успеха
+
     const [isOrderSuccess, setIsOrderSuccess] = useState(false);
 
-    // Функция обновления полей ввода
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = e.target;
         setFormData(prev => ({ ...prev, [id]: value }));
-        
-        // Очищаем ошибку при вводе
+
         if (errors[id]) {
             setErrors(prev => ({ ...prev, [id]: '' }));
         }
     };
 
-    // Функция валидации
     const validateForm = () => {
         const newErrors: Record<string, string> = {};
-        
-        // Проверка обязательных полей
+
         if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
         if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
         if (!formData.phone.trim()) newErrors.phone = 'Phone is required';
@@ -64,26 +58,21 @@ export const CheckoutPage = () => {
         if (!formData.postcode.trim()) newErrors.postcode = 'Postcode is required';
 
         setErrors(newErrors);
-        
-        // Если объект ошибок пуст, возвращаем true
+
         return Object.keys(newErrors).length === 0;
     };
 
-    // Обработчик кнопки Purchase
     const handlePurchase = () => {
         if (validateForm()) {
-            // Если форма валидна:
             setIsOrderSuccess(true);
         } else {
-            // Если есть ошибки, скроллим вверх (опционально)
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     };
 
-    // Обработчик "Вернуться домой"
     const handleBackToHome = () => {
-        dispatch(clearCart()); // Очищаем корзину
-        navigate('/');         // Возвращаем на главную (укажите ваш путь)
+        dispatch(clearCart()); 
+        navigate('/');
     };
 
     return (
@@ -297,8 +286,4 @@ export const CheckoutPage = () => {
             </div>
         </div>
     )
-}
-
-function dispatch(arg0: { payload: undefined; type: "cart/clearCart"; }) {
-    throw new Error('Function not implemented.');
 }
