@@ -4,7 +4,11 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { Link } from 'react-router-dom';
 
-export const Cart = () => {
+interface CartProps {
+    onClose: () => void;
+}
+
+export const Cart: React.FC<CartProps> = ({ onClose }) => {
     const { items } = useSelector((state: RootState) => state.cart);
     const totalPrice = items.reduce((sum, item) => sum + item.price * item.count, 0);
 
@@ -28,7 +32,13 @@ export const Cart = () => {
                                 <span>Total:</span>
                                 <span>{totalPrice} $</span>
                             </div>
-                            <Link to={'/checkout'} className="cart__container__btn">checkout</Link>
+                            <Link 
+                                to={'/checkout'} 
+                                className="cart__container__btn"
+                                onClick={onClose}
+                            >
+                                checkout
+                            </Link>
                         </div>
                     </>
                 )}

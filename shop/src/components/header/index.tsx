@@ -13,7 +13,7 @@ export const Header = () => {
 
     return (
         <header className="header">
-            {isCartOpen && <Cart />}
+            {isCartOpen && <Cart onClose={() => setIsCartOpen(false)} />}
             <div className="header__container">
                 <div className="header__container__left-nav">
                     <Link to={'/'}>shop</Link>

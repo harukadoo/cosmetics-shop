@@ -9,10 +9,12 @@ import { useEffect, useState, useMemo } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setProducts, selectSortedProducts } from '../../store/slices/productsSlice';
+import { addToCart } from '../../store/slices/cartSlice';
 import { ItemCard } from '../../components/itemCard';
 
 export const HomePage = () => {
     const perfumesData: IPerfume[] = perfumesDataRaw as IPerfume[];
+    const featuredPerfume = perfumesData[0];
     const ITEMS_PER_PAGE = 8;
 
     const [minPrice, setMinPrice] = useState(100);
@@ -53,6 +55,12 @@ export const HomePage = () => {
         setVisibleCount(ITEMS_PER_PAGE);
     };
 
+    const handleAddHeroItemToCart = () => {
+        if (featuredPerfume) {
+            dispatch(addToCart(featuredPerfume));
+        }
+    };
+
     return (
         <div className="home">
             {selectedPerfume && (
@@ -66,16 +74,30 @@ export const HomePage = () => {
                     <div className="hero__container">
                         <div className="item-card">
                             <div className="item-card__container">
-                                <img className="item-card__container__img"></img>
+                                <img 
+                                    src={featuredPerfume.image} 
+                                    alt={featuredPerfume.title}
+                                    className="item-card__container__img" 
+                                />
 
                                 <div className="item-card__container__info">
-                                    {/* <button className="item-card__container__info__btn" title="add to cart">
+                                    <button 
+                                        className="item-card__container__info__btn" 
+                                        title="add to cart"
+                                        onClick={handleAddHeroItemToCart}
+                                    >
                                         <img src={plus} alt="plus" />
-                                    </button> */}
+                                    </button>
 
-                                    <p className="item-card__container__info__title">perfume bal d'arfique</p>
-                                    <p className="item-card__container__info__price">165 $</p>
-                                    <p className="item-card__container__info__size">50 ml</p>
+                                    <p className="item-card__container__info__title">
+                                        {featuredPerfume.title}
+                                    </p>
+                                    <p className="item-card__container__info__price">
+                                        {featuredPerfume.price} {featuredPerfume.currency}
+                                    </p>
+                                    <p className="item-card__container__info__size">
+                                        {featuredPerfume.volume}
+                                    </p>
                                 </div>
                             </div>
                         </div>

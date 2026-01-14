@@ -98,5 +98,45 @@
     "volume": "100ml",
     "gender": "male",
     "description": "A cool forest scent with notes of pine needles, cedarwood, and damp moss."
+  },
+  {
+    "id": 11,
+    "title": "Velvet Rose",
+    "price": 210,
+    "currency": "$",
+    "image": "/assets/perfumes/perfume.jpg",
+    "volume": "30ml",
+    "gender": "female",
+    "description": "An elegant bouquet of Damask rose, complemented by soft musk and pink pepper."
+  },
+  {
+    "id": 12,
+    "title": "Rose Honey",
+    "price": 260,
+    "currency": "$",
+    "image": "/assets/perfumes/perfume.jpg",
+    "volume": "30ml",
+    "gender": "female",
+    "description": "An elegant bouquet of Damask rose, complemented by soft musk and pink pepper."
+  },
+  {
+    "id": 13,
+    "title": "Dark Oud",
+    "price": 310,
+    "currency": "$",
+    "image": "/assets/perfumes/perfume.jpg",
+    "volume": "50ml",
+    "gender": "male",
+    "description": "A luxurious and mysterious scent of precious oud, smooth leather, and tobacco leaf."
+  },
+    {
+    "id": 15,
+    "title": "Citrus Splash",
+    "price": 220,
+    "currency": "$",
+    "image": "/assets/perfumes/perfume.jpg",
+    "volume": "50ml",
+    "gender": "unisex",
+    "description": "An energetic mix of Sicilian lemon, sparkling grapefruit, and fresh-cut grass."
   }
 ]

@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IPerfume } from '../../types';
 
-// Расширяем тип товара, добавляя количество
 export interface ICartItem extends IPerfume {
     count: number;
 }
@@ -11,15 +10,14 @@ interface CartState {
     totalPrice: number;
 }
 
-// 1. Функция для получения данных из LocalStorage при старте
 const getCartFromLS = (): ICartItem[] => {
     const data = localStorage.getItem('cart');
     return data ? JSON.parse(data) : [];
 };
 
 const initialState: CartState = {
-    items: getCartFromLS(), // Загружаем сохраненные данные
-    totalPrice: 0, // Можно тоже сохранять, но лучше пересчитывать
+    items: getCartFromLS(), 
+    totalPrice: 0, 
 };
 
 const cartSlice = createSlice({
@@ -39,21 +37,15 @@ const cartSlice = createSlice({
             localStorage.setItem('cart', JSON.stringify(state.items));
         },
 
-        // --- ДОБАВЬТЕ ЭТОТ БЛОК (ДЛЯ КНОПКИ "-") ---
         minusItem(state, action: PayloadAction<number>) {
             const findItem = state.items.find(obj => obj.id === action.payload);
             
             if (findItem) {
-                // Уменьшаем на 1
-                findItem.count--;
-                
-                // (Опционально) Если стало 0 или меньше - можно удалить товар совсем, 
-                // но обычно мы блокируем кнопку "минус" на цифре 1 в UI, так что здесь просто минус.
+                findItem.count--;    
             }
             
             localStorage.setItem('cart', JSON.stringify(state.items));
         },
-        // -------------------------------------------
 
         removeFromCart(state, action: PayloadAction<number>) {
             state.items = state.items.filter(obj => obj.id !== action.payload);

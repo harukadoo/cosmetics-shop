@@ -1,0 +1,55 @@
+@import "../defines.scss";
+
+
+.order-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.253);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+
+    &__container {
+        background-color: $defaultWhite;
+        padding: 40px;
+        border-radius: 12px;
+        text-align: center;
+        max-width: 400px;
+        width: 100%;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    &__title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: $defaultBlack;
+    }
+
+    &__text {
+        font-size: 16px;
+        color: $defaultBlack;
+        margin-bottom: 30px;
+    }
+
+    &__btn {
+        background-color: $blue;
+        color: $defaultWhite;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+        width: 100%;
+
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+}

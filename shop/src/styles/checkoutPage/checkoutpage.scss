@@ -257,3 +257,15 @@
         overflow-y: auto;
     }
 }
+
+.input-error-text {
+    color: #e74c3c; 
+    font-size: calc(var(--index) * 0.6);
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+.personal-info__input.error {
+    border-color: #e74c3c; 
+    background-color: $defaultWhite;
+}
